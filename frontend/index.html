@@ -1,51 +1,26 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Курс валют NBP</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курс валют</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Поточні курси валют NBP</h1>
-  <div id="rates"></div>
+  <h1>Курс валют Alior Bank</h1>
 
-  <script>
-    async function getExchangeRateNBP(table, code) {
-      const url = `https://api.nbp.pl/api/exchangerates/rates/${table}/${code}/?format=json`;
-      try {
-        const response = await fetch(url, {
-          headers: { 'Accept': 'application/json' }
-        });
-        if (!response.ok) {
-          throw new Error(`Помилка запиту: ${response.status}`);
-        }
-        const data = await response.json();
-        return data.rates[0].mid;
-      } catch (error) {
-        console.error('Помилка отримання курсу:', error);
-        return null;
-      }
-    }
+  <div class="rate-box">
+    <h2>Купівля</h2>
+    <p id="buy-rate">Завантаження...</p>
+  </div>
 
-    async function displayRates() {
-      const codes = ['USD', 'EUR', 'CHF'];
-      const ratesDiv = document.getElementById('rates');
-      ratesDiv.innerHTML = '<p>Завантаження курсів...</p>';
+  <div class="rate-box">
+    <h2>Продаж</h2>
+    <p id="sell-rate">Завантаження...</p>
+  </div>
 
-      const promises = codes.map(async (code) => {
-        const rate = await getExchangeRateNBP('a', code);
-        return { code, rate };
-      });
+  <button id="refresh">🔄 Оновити</button>
 
-      const results = await Promise.all(promises);
-
-      ratesDiv.innerHTML = results.map(({ code, rate }) =>
-        rate ? `<p>${code}: ${rate} PLN</p>` : `<p>${code}: Дані недоступні</p>`
-      ).join('');
-    }
-
-    // Запускаємо показ курсів після завантаження сторінки
-    window.addEventListener('DOMContentLoaded', displayRates);
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
