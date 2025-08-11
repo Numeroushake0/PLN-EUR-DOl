@@ -4,7 +4,7 @@ const refreshBtn = document.getElementById('refresh');
 
 async function loadRates() {
   try {
-    const res = await fetch('https://example.com/rates.json');  // URL до твого JSON з курсами
+    const res = await fetch('ttp://api.nbp.pl/api/exchangerates/tables/A');  // URL до твого JSON з курсами
     const data = await res.json();
 
     buyRateEl.textContent = data.buy;
