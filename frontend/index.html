@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Курс валют</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс валют PLN</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Курс валют Alior Bank</h1>
+    <h1>Курси валют з NBP</h1>
 
-  <div class="rate-box">
-    <h2>Купівля</h2>
-    <p id="buy-rate">Завантаження...</p>
-  </div>
+    <div class="currency">
+        <h2>PLN → USD</h2>
+        <p>Купівля: <span id="usd-buy">...</span></p>
+        <p>Продаж: <span id="usd-sell">...</span></p>
+    </div>
 
-  <div class="rate-box">
-    <h2>Продаж</h2>
-    <p id="sell-rate">Завантаження...</p>
-  </div>
+    <div class="currency">
+        <h2>PLN → EUR</h2>
+        <p>Купівля: <span id="eur-buy">...</span></p>
+        <p>Продаж: <span id="eur-sell">...</span></p>
+    </div>
 
-  <button id="refresh">🔄 Оновити</button>
+    <button id="refresh-btn">Оновити</button>
 
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

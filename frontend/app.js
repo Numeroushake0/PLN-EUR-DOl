@@ -1,19 +1,20 @@
-const buyRateEl = document.getElementById('buy-rate');
-const sellRateEl = document.getElementById('sell-rate');
-const refreshBtn = document.getElementById('refresh');
+const API_URL = "http://localhost:3000/api/rates"; // при деплої на Netlify треба замінити на свій backend
 
-async function loadRates() {
-  try {
-    const res = await fetch('http://localhost:3000/api/rates');
-    const data = await res.json();
-    buyRateEl.textContent = data.buy;
-    sellRateEl.textContent = data.sell;
-  } catch (error) {
-    buyRateEl.textContent = 'Помилка';
-    sellRateEl.textContent = 'Помилка';
-    console.error(error);
-  }
+async function fetchRates() {
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        document.getElementById("usd-buy").textContent = data.usd.buy.toFixed(2);
+        document.getElementById("usd-sell").textContent = data.usd.sell.toFixed(2);
+        document.getElementById("eur-buy").textContent = data.eur.buy.toFixed(2);
+        document.getElementById("eur-sell").textContent = data.eur.sell.toFixed(2);
+    } catch (err) {
+        alert("Не вдалося отримати курси валют");
+    }
 }
 
-refreshBtn.addEventListener('click', loadRates);
-loadRates();
+document.getElementById("refresh-btn").addEventListener("click", fetchRates);
+
+// Завантаження при старті
+fetchRates();
