@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/rates"; // при деплої на Netlify треба замінити на свій backend
+const API_URL = "/.netlify/functions/getRates"; // при деплої на Netlify треба замінити на свій backend
 
 async function fetchRates() {
     try {
